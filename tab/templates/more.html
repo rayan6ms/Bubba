@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+
+{% block "head" %}
+
+<style>
+    @import url('https://rsms.me/inter/inter.css');
+
+    html {
+        font-family: 'Inter', sans-serif;
+    }
+
+    @import url('http://fonts.cdnfonts.com/css/abeezee');
+
+    .bold {
+        font-weight: bold;
+    }
+
+    .italic {
+        font-style: italic;
+    }
+
+    #outer-box {
+        background: linear-gradient(to left, white 50%, #7affd7 50%);
+        height: 750px;
+        width: auto;
+        margin: 0 14%;
+        margin-top: 50px;
+        border-radius: 8px;
+        overflow: auto;
+    }
+
+    #inner-box {
+        background-color: white;
+        width: auto;
+        height: 620px;
+        margin: 0 11.6%;
+        box-shadow: 10px 4px 1px 4px rgba(68, 68, 68, 0.25);
+        border-radius: 8px;
+        overflow: auto;
+        margin-top: 70px;
+    }
+
+
+    #about-me {
+        width: 284px;
+        height: 220px;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        font-size: 96px;
+        line-height: 110px;
+        margin-top: 80px;
+        margin-bottom: 0;
+    }
+
+    #first-paragraph {
+        width: 225px;
+        height: 187px;
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 26px;
+        line-height: 31px;
+        margin: 10px 0 0;
+    }
+
+    #second-paragraph,
+    #link {
+        width: 208px;
+        height: 34px;
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 17px;
+        line-height: 19px;
+        margin: 18px 0 0;
+        position: absolute;
+    }
+
+    #first-paragraph,
+    #second-paragraph,
+    #about-me {
+        margin-left: 85px;
+    }
+
+    #first-paragraph,
+    #second-paragraph,
+    #about-me {
+        color: #3DA6AD;
+    }
+
+    #previous {
+        display: block;
+        margin: 8px auto;
+
+    }
+
+    #photo {
+        width: 322px;
+        height: 380px;
+        float: right;
+        margin-right: 160px;
+        margin-top: 100px;
+    }
+
+    #link {
+        margin-top: 0;
+        text-decoration: underline;
+        color: #3DA6AD;
+    }
+
+    #link:hover {
+        color: #57c6ce;
+    }
+
+    #photo-sized {
+        display: none;
+    }
+
+    @media screen and (max-width: 1565px) {
+        #second-paragraph, #photo {
+            display: none;
+        }
+
+        #first-paragraph, #about-me, #photo-sized {
+            display: block;
+            width: auto;
+            padding: 0 20%;
+            margin-left: 20px;
+        }
+
+        #about-me {
+            text-align: center;
+            height: 70px;
+            margin-top: 0px;
+            margin-bottom: 20px;
+            font-size: 30px;
+        }
+
+        #photo-sized {
+            display: flex;
+            justify-content: center;
+        }
+
+        #first-paragraph {
+        }
+
+        #previous {
+            margin-top: 30px;
+        }
+    }
+
+    @media screen and (max-width: 700px) {
+        #outer-box {
+            margin: 0;
+        }
+
+        #first-paragraph {
+            padding: 0 10%;
+        }
+
+        #inner-box {
+            margin: 50px 5% 0;
+        }
+    }
+
+    @media screen and (max-width: 465px) {
+        #inner-box {
+            margin: 50px 0;
+        }
+
+        #first-paragraph {
+            padding: 0 5%;
+        }
+    } 
+
+</style>
+
+{% endblock %}
+
+{% block "content" %}
+<div id="outer-box">
+    <div id="inner-box">
+        <div id="photo" alt=""><img src="../../media/photo.png"></div>
+        <p id="about-me">About Me</p>
+        <div id="photo-sized" alt=""><img src="../../media/photo.png"></div>
+
+        <p id="first-paragraph">My name is <span class="bold">Rayan</span>, I'm a computer science student from Brazil and I like Space Movies</p>
+
+        <p id="second-paragraph">This site was created by <br> <a id="link" target="_blank"
+                href="https://github.com/rayan6ms">@rayan6ms</a></p>
+
+        <a href="/about"><svg id="previous" width="80" height="80" viewBox="0 0 80 80" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M40 60L43.575 56.5175L29.625 42.5L60 42.5V37.5L29.625 37.5L43.575 23.5675L40 20L20 40L40 60Z"
+                    fill="#8F9095" />
+                <path
+                    d="M40 5C46.9223 5 53.6892 7.05271 59.4449 10.8986C65.2007 14.7444 69.6867 20.2107 72.3358 26.6061C74.9848 33.0015 75.678 40.0388 74.3275 46.8282C72.977 53.6175 69.6436 59.8539 64.7487 64.7487C59.8539 69.6436 53.6175 72.977 46.8282 74.3275C40.0388 75.678 33.0015 74.9848 26.6061 72.3358C20.2107 69.6867 14.7444 65.2007 10.8986 59.4449C7.05271 53.6892 5 46.9223 5 40C5.01059 30.7207 8.70148 21.8244 15.263 15.263C21.8244 8.70148 30.7207 5.01059 40 5ZM40 70C45.9334 70 51.7336 68.2405 56.6671 64.9441C61.6006 61.6476 65.4457 56.9623 67.7164 51.4805C69.987 45.9987 70.5811 39.9667 69.4235 34.1473C68.266 28.3279 65.4088 22.9824 61.2132 18.7868C57.0176 14.5912 51.6721 11.734 45.8527 10.5764C40.0333 9.41888 34.0013 10.013 28.5195 12.2836C23.0377 14.5542 18.3524 18.3994 15.0559 23.3329C11.7595 28.2664 10 34.0666 10 40C10.0093 47.9536 13.1729 55.5789 18.797 61.203C24.4211 66.827 32.0463 69.9907 40 70Z"
+                    fill="#8F9095" />
+            </svg></a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+
+{% block "head" %}
+
+<style>
+    @import url('https://rsms.me/inter/inter.css');
+
+    html {
+        font-family: 'Inter', sans-serif;
+    }
+
+    @import url('http://fonts.cdnfonts.com/css/abeezee');
+
+    .bold {
+        font-weight: bold;
+    }
+
+    .italic {
+        font-style: italic;
+    }
+
+    #outer-box {
+        background: linear-gradient(to left, #7affd7 50%, white 50%);
+        height: 750px;
+        width: auto;
+        margin: 0 14%;
+        margin-top: 50px;
+        border-radius: 8px;
+        overflow: auto;
+    }
+
+    #inner-box {
+        background-color: white;
+        width: auto;
+        height: 620px;
+        margin: 0 11.6%;
+        box-shadow: -10px 4px 1px 4px rgba(68, 68, 68, 0.25);
+        border-radius: 8px;
+        overflow: auto;
+        margin-top: 70px;
+    }
+
+
+    #about-site {
+        width: 284px;
+        height: 300px;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        font-size: 96px;
+        line-height: 100px;
+        float: right;
+        margin-right: 160px;
+        margin-top: 90px;
+    }
+
+    #first-paragraph {
+        width: 393px;
+        height: 62px;
+        font-family: 'ABeeZee', sans-serif;
+        font-weight: 400;
+        font-size: 26px;
+        line-height: 31px;
+        font-weight: bolder;
+        margin-top: 100px;
+    }
+
+    #second-paragraph {
+        width: 473px;
+        height: 233px;
+        font-family: "Inter", sans-serif;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29px;
+    }
+
+    #first-paragraph,
+    #second-paragraph {
+        margin-left: 65px;
+    }
+
+    #first-paragraph,
+    #second-paragraph,
+    #about-site {
+        color: #3DA6AD;
+    }
+
+    #next {
+        display: block;
+        margin: 75px auto 0;
+    }
+
+    @media screen and (max-width: 1500px) {
+        #first-paragraph {
+            display: none;
+        }
+
+        #about-site {
+            font-size: 40px;
+            height: 70px;
+        }
+
+        #second-paragraph {
+            font-size: 26px;
+        }
+
+        #about-site, #second-paragraph {
+            display: inline-block;
+            width: auto;
+            padding: 0 10%;
+            margin-left: 20px;
+        }
+    }
+
+    @media screen and (max-width: 1060px) {
+        #about-site {
+            font-size: 28px;
+            margin-right: 88px;
+        }
+
+        #second-paragraph {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+    }
+
+    @media screen and (max-width: 900px) {
+        #second-paragraph {
+            overflow: auto;
+        }
+    }
+
+    @media screen and (max-width: 700px) {
+        #outer-box {
+            margin: 0;
+            height: 730px;
+        }
+
+        #inner-box {
+            margin: 50px 5% 0;
+        }
+
+        #about-site {
+            margin-right: 100px;
+        }
+    }
+
+    @media screen and (max-width: 450px) {
+        #inner-box {
+            margin: 50px 0;
+        }
+
+        #about-site {
+            margin-right: 40px;
+        }
+    }
+
+    @media screen and (max-width: 320px) {
+        #about-site {
+            font-size: 26px;
+            margin-right: 0;
+            padding: 0 15px 0 0;
+        }
+
+        #second-paragraph {
+            font-size: 20px;
+        }
+    }
+</style>
+
+{% endblock %}
+
+{% block "content" %}
+
+<div id="outer-box">
+    <div id="inner-box">
+
+        <p id="about-site">About The Site</p>
+        <p id="first-paragraph">This ChatBot was created to bring fun times back</p>
+        <p id="second-paragraph">It was created for my final project in <span class="bold">Harvard CS50</span>
+            course.<br>
+            It is inspired by a computer system idealized in the <span class="italic">Halt and Catch Fire</span>
+            television series.<br>
+            The subject and context detection makes it more human-like and gives emotion and personality to the
+            conversation.</p>
+
+        <a href="/about/more"><svg id="next" width="80" height="80" viewBox="0 0 80 80" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M40 20L36.425 23.4825L50.375 37.5H20V42.5H50.375L36.425 56.4325L40 60L60 40L40 20Z"
+                    fill="#8F9095" />
+                <path
+                    d="M40 75C33.0777 75 26.3108 72.9473 20.555 69.1015C14.7993 65.2556 10.3133 59.7893 7.66422 53.3939C5.01515 46.9985 4.32203 39.9612 5.67252 33.1719C7.023 26.3825 10.3564 20.1461 15.2513 15.2513C20.1461 10.3564 26.3825 7.02301 33.1718 5.67253C39.9612 4.32205 46.9985 5.01516 53.3939 7.66423C59.7893 10.3133 65.2556 14.7993 69.1014 20.5551C72.9473 26.3108 75 33.0777 75 40C74.9894 49.2793 71.2985 58.1756 64.737 64.7371C58.1756 71.2985 49.2793 74.9894 40 75ZM40 10C34.0666 10 28.2664 11.7595 23.3329 15.0559C18.3994 18.3524 14.5542 23.0377 12.2836 28.5195C10.013 34.0013 9.41889 40.0333 10.5764 45.8527C11.734 51.6722 14.5912 57.0176 18.7868 61.2132C22.9824 65.4088 28.3279 68.266 34.1473 69.4236C39.9667 70.5811 45.9987 69.987 51.4805 67.7164C56.9623 65.4458 61.6476 61.6006 64.9441 56.6671C68.2405 51.7336 70 45.9335 70 40C69.9907 32.0464 66.8271 24.4211 61.203 18.797C55.5789 13.173 47.9537 10.0093 40 10Z"
+                    fill="#8F9095" />
+            </svg></a>
+    </div>
+</div>
+{% endblock %}

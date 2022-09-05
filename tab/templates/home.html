@@ -1,0 +1,295 @@
+{% extends "base.html" %}
+
+{% load maps_tags %}
+
+{% block "head" %}
+
+<style>
+    #box {
+        background-color: #E6E6EC;
+        height: 700px;
+        margin: 0 16%;
+        box-shadow: -5px 3px 3px 3px rgb(68 68 68 / 25%);
+        border-radius: 8px;
+        overflow: auto;
+        margin-top: 65px;
+        padding: 8px 0;
+    }
+
+
+    #chat_bubble {
+        background-color: white;
+        margin: 0 5%;
+        margin-top: 8px;
+        height: 88%;
+        width: auto;
+        padding: 0;
+        padding-bottom: 24px;
+        padding-left: 15px;
+        border-radius: 8px;
+        overflow-y: scroll;
+        font-size: 18px;
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: flex-start;
+    }
+
+    #input_bubble {
+        justify-content: end;
+        background-color: rgb(255, 255, 255);
+        margin: auto;
+        height: 50px;
+        width: 90%;
+        border-radius: 8px;
+    }
+
+    #form {
+        margin-top: 0.8%;
+        margin-right: 4px;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    #chat-input {
+        margin-top: 4px;
+        height: 42px;
+        border: none;
+        padding-left: 12px;
+        border-radius: 6px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        box-shadow: -2px 2px 6px 1px rgb(68 68 68 / 25%);
+    }
+
+    #chat-input:focus {
+        outline: none;
+    }
+
+    #send {
+        margin-top: 4px;
+        color: white;
+        background-color: rgba(0, 136, 169, 1);
+        border: none;
+        border-radius: 6px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        box-shadow: 0px 3px 6px 1px rgb(68 68 68 / 25%);
+    }
+
+    .bubble {
+        display: flex;
+        background-color: #E6E6EC;
+        border-radius: 6px;
+        padding-bottom: 4px;
+        margin-bottom: 2px;
+        justify-content: flex-end;
+        align-self: flex-end;
+    }
+
+    .bubble_message {
+        border-bottom-right-radius: 0px;
+    }
+
+    .bubble_answer {
+        border-bottom-left-radius: 0px;
+        text-align: start;
+    }
+
+    .message {
+        margin: 0 4px 0 2px;
+        padding-left: 8px;
+        padding-top: 4px;
+    }
+
+    .time {
+        font-size: 11px;
+        min-width: 41px;
+        margin: 16px 6px 3px;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .chat-img {
+        width: 45px;
+        height: 45px;
+        display: flex;
+        border-radius: 50%;
+        align-self: flex-end;
+    }
+
+    .chat-pack {
+        width: fit-content;
+        text-align: end;
+        display: flex;
+        justify-content: flex-end;
+        max-width: 66%;
+        height: auto;
+        margin-top: 22px;
+        word-break: break-all;
+        text-align-last: left;
+    }
+
+    .chat-answer {
+        align-self: flex-start;
+    }
+
+    .chat-message {
+        align-self: flex-end;
+    }
+
+    .message-img {
+        margin-left: 5px;
+    }
+
+    .answer-img {
+        margin-right: 5px;
+    }
+
+    @media screen and (max-width: 680px) {
+        #box {
+            margin: 0px;
+            height: 730px;
+        }
+    }
+
+    @media screen and (max-width: 560px) {
+        #box {
+            height: 730px;
+            margin: 0px;
+        }
+
+        #chat-bubble {
+            padding-right: 25%;
+        }
+
+        .chat-pack {
+            max-width: 100%;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+
+        #chat-bubble {
+            padding-right: 68%;
+            padding-left: 40px;
+            margin-top: 30px;
+        }
+
+        .alert-red,
+        .alert-green {
+            top: 30%;
+            left: 7%;
+        }
+    }
+
+    @media screen and (max-width: 400px) {
+        #box {
+            height: 500px;
+        }
+
+        #chat-bubble {
+            padding-right: 80%;
+            padding-left: 40px;
+            margin-top: 20px;
+        }
+
+        .alert-red,
+        .alert-green {
+            top: 30%;
+            left: 4%;
+        }
+
+        #chat-input {
+            width: 212px;
+        }
+    }
+
+    @media screen and (max-width: 370px) {
+        #chat-bubble {
+            padding-right: 85%;
+            padding-left: 40px;
+            margin-top: 20px;
+        }
+
+        .alert-red,
+        .alert-green {
+            top: 30%;
+            left: 2%;
+        }
+    }
+
+    @media screen and (max-height: 1000px) {
+        #box {
+            height: px;
+        }
+    }
+
+    @media screen and (max-height: 370px) {
+        #box {
+            height: 500px;
+        }
+    }
+
+    @media screen and (max-height: 370px) {
+        #box {
+            height: 500px;
+        }
+    }
+
+    @media screen and (max-height: 370px) {
+        #box {
+            height: 500px;
+        }
+    }
+
+    @media screen and (max-height: 370px) {
+        #box {
+            height: 500px;
+        }
+    }
+
+</style>
+
+{% endblock %}
+
+{% block "content" %}
+<div id="box">
+    <div id="chat_bubble">
+
+        {% if iterable %}
+            {% for i in iterable %}
+                {% if i|divisibleby:"2" == 1 %}
+                    <div class="chat-pack chat-answer">
+                        <img class="chat-img answer-img" src="../media/chat-img.png">
+                        <div class="bubble bubble_answer">
+                            <p class="message">{{messages|list_item:forloop.revcounter0}}</p>
+                            <p class="time">{{time|list_item:forloop.revcounter0}}</p>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if i|divisibleby:"2" == 0 %}
+                    <div class="chat-pack chat-message">
+                        <div class="bubble bubble_message">
+                            <p class="message">{{messages|list_item:forloop.revcounter0}}</p>
+                            <p class="time">{{time|list_item:forloop.revcounter0}}</p>
+                        </div>
+                        <img class="chat-img message-img" src="../media/pfp/{{picture}}.png">
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div id="input_bubble">
+        <form id="form" method="POST" action=""> {% csrf_token %}
+            <input id="chat-input" type="text" placeholder="Type something here..." required name="input"
+                autofocus="autofocus" autocomplete="off">
+            <button id="send">
+                <svg width="32px" height="32px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m6 12-3 9 18-9L3 3l3 9zm0 0h6" />
+                </svg>
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

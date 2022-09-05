@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="../../media/chat-img.png" type="image/x-icon">
+
+  <!-- Bootstrap CSS -->
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  {% load static %}
+  <link rel="stylesheet" href=" {% static 'base.css' %}">
+  {% block "head" %} {% endblock %}
+  <title>Bubba</title>
+</head>
+
+<body>
+  <header>
+    <div id="div-logo">
+      <a href="/home"><img class="logo" src="../../media/logo.png"></a>
+    </div>
+    <div id="div-tabs">
+      <nav class="nav-links">
+        <ul>
+          <li><a href="/home">Bubba</a></li>
+          <li><a href="/teach">Teach</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div id="div-profile">
+      <p id="username"> {{user}} </p>
+      <div class="dropdown">
+        <img id="selected" class="picture picture-img" src="../../media/pfp/{{picture}}.png"></img>
+        <div class="dropdown-content">
+          {% for i in unselected %}
+            <form class="picture-form" method="POST">{% csrf_token %}
+              <button name="new_picture" class="dropdown-item" value="{{i}}">
+                <img class="picture-img" src="../../media/pfp/{{i}}.png">
+              </button>
+            </form>
+          {% endfor %}
+          <a id="freepik" href="http://www.freepik.com">Designed by Freepik</a>
+        </div>
+      </div>
+      <a href="/logout" class="button-link">
+        <button class="button button-logout">
+          <img id="logout-img" src="../../media/logout.png">
+          <span id="logout-span">Log Out</span>
+        </button>
+      </a>
+      <div class="div-menu">
+        <button class="button button-menu"><img src="../../media/menu.png" id="menu-img"></img>
+          <div class="menu-content">
+            <a href="/home" class="menu-item">Bubba</a>
+            <a href="/teach" class="menu-item">Teach</a>
+            <a href="/about" class="menu-item">About</a>
+            <a href="/logout" class="menu-item">Log Out</a>
+          </div>
+      </div>
+    </div>
+    </div>
+  </header>
+  <main>
+    {% block "content" %} {% endblock %}
+  </main>
+  <footer id="footer">
+    <p>This site was created by <a id="footer-link" target="_blank" href="https://github.com/rayan6ms">@rayan6ms</a></p>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

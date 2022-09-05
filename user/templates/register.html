@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href=" {% static 'user.css' %}">
+</head>
+<body>
+    
+    <div class="center">
+        <h1>Register</h1>
+        
+        {% if status == "1" %}
+        <div class="alert alert-danger" style="padding-left: 50px;" role="alert">
+            <span class="bold">Username</span> and <span class="bold">Password</span> are required!
+        </div>
+        {% endif %}
+
+        {% if status == "2" %}
+        <div class="alert alert-danger" style="padding-left: 50px;" role="alert">
+            <span class="bold">Username</span> already registered!
+        </div>
+        {% endif %}
+
+        {% if status == "3" %}
+        <div class="alert alert-danger" style="padding-left: 50px;" role="alert">
+            System error warning!
+        </div>
+        {% endif %}
+
+        {% if status == "4" %}
+        <div class="alert alert-danger" style="padding-left: 50px;" role="alert">
+            <span class="bold">Password</span> must be <span class="bold">7</span> characters at least!
+        </div>
+        {% endif %}
+
+        {% if status == "5" %}
+        <div class="alert alert-danger" style="padding-left: 50px;" role="alert">
+            <span class="bold">Password</span> and <span class="bold">Confirm Password</span> must match!
+        </div>
+        {% endif %}
+
+        {% if status == "6" %}
+        <div class="alert alert-danger px-4" style="padding-left: 50px;" role="alert">
+            <span class="bold">Username</span> can only be 20 characters maximum!
+        </div>
+        {% endif %}
+
+        <form method="POST" action="{% url 'signup' %}"> {% csrf_token %}
+            <div class="txt_field">
+                <input name="username" type="text" required maxlength="20">
+                <span></span>
+                <label>Username</label>
+            </div>
+            <div class="txt_field">
+                <input name="password" type="password" required minlength="7">
+                <span></span>
+                <label>Password</label>
+            </div>
+            <div class="txt_field">
+                <input name="confirm_password" type="password" required>
+                <label>Confirm Password</label>
+            </div>
+            <input name="submit" type="submit" value="Register">
+            <div class="signup_link">Already a member?  
+                <a href="/login" target="_self">Login</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
