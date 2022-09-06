@@ -36,11 +36,11 @@
         <img id="selected" class="picture picture-img" src="../../media/pfp/{{picture}}.png"></img>
         <div class="dropdown-content">
           {% for i in unselected %}
-            <form class="picture-form" method="POST">{% csrf_token %}
-              <button name="new_picture" class="dropdown-item" value="{{i}}">
-                <img class="picture-img" src="../../media/pfp/{{i}}.png">
-              </button>
-            </form>
+          <form class="picture-form" method="POST">{% csrf_token %}
+            <button name="new_picture" class="dropdown-item" value="{{i}}">
+              <img class="picture-img" src="../../media/pfp/{{i}}.png">
+            </button>
+          </form>
           {% endfor %}
           <a id="freepik" href="http://www.freepik.com">Designed by Freepik</a>
         </div>

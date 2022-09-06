@@ -1,8 +1,8 @@
 categories:
 - facts
 
-facts:
-- - tell me a fact
+conversations:
+- - Tell me a fact
   - Most people fall asleep in seven minutes
   - Tigers have striped skin, not just striped fur
   - There are 293 ways to make change for a dollar
@@ -32,7 +32,7 @@ facts:
   - To read is to look at a paper and hallucinate
   - The universe is too big for me to tell you
   - Neymar > Messi
-- - i want a fact
+- - I want a fact
   - Most people fall asleep in seven minutes
   - Tigers have striped skin, not just striped fur
   - There are 293 ways to make change for a dollar
@@ -47,7 +47,7 @@ facts:
   - To read is to look at a paper and hallucinate
   - The universe is too big for me to tell you
   - Neymar > Messi
-- - tell me something
+- - Tell me something
   - Most people fall asleep in seven minutes
   - Tigers have striped skin, not just striped fur
   - There are 293 ways to make change for a dollar

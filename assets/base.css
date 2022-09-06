@@ -1,5 +1,5 @@
 body {
-  background: linear-gradient(120deg, rgba(101, 113, 172, 1) 10%, rgba(63, 124, 177, 1) 25%, rgba(48, 145, 166, 1) 50%, rgba(46, 127, 196, 1) 75%, rgba(17, 96, 191, 1) 90%);
+  background: linear-gradient(85deg, rgba(101, 113, 172, 1) 10%, rgba(63, 124, 177, 1) 25%, rgba(48, 145, 166, 1) 50%, rgba(46, 127, 196, 1) 75%, rgba(17, 96, 191, 1) 90%);
 }
 
 *::-webkit-scrollbar {
@@ -59,7 +59,6 @@ header {
 main {
   position: absolute;
   width: 100%;
-  height: 85%;
 }
 
 .logo {
@@ -322,5 +321,137 @@ main {
     width: 28px;
     height: 28px;
   }
+
+  @media screen and (max-width: 680px) {
+    #box {
+        margin: 0px;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    #box {
+        margin: 0px;
+    }
+
+    #chat-bubble {
+        padding-right: 25%;
+    }
+
+    .chat-pack {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    #chat-bubble {
+        padding-right: 68%;
+        padding-left: 40px;
+        margin-top: 30px;
+    }
+
+    .alert-red,
+    .alert-green {
+        top: 30%;
+        left: 7%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #chat-bubble {
+        padding-right: 80%;
+        padding-left: 40px;
+        margin-top: 20px;
+    }
+
+    .alert-red,
+    .alert-green {
+        top: 30%;
+        left: 4%;
+    }
+
+    #chat-input {
+        width: 212px;
+    }
+}
+
+@media screen and (max-width: 370px) {
+    #chat-bubble {
+        padding-right: 85%;
+        padding-left: 40px;
+        margin-top: 20px;
+    }
+
+    .alert-red,
+    .alert-green {
+        top: 30%;
+        left: 2%;
+    }
+
+    #chat-input {
+        width: 202px;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    #chat-input {
+        width: 180px;
+    }
+}
+
+@media screen and (max-height: 1010px) {
+    #box {
+        height: 750px;
+    }
+}
+
+@media screen and (max-height: 920px) {
+    #box {
+        margin: 0;
+    }
+}
+
+@media screen and (max-height: 880px) {
+    #box {
+        height: 685px;
+    }
+}
+
+@media screen and (max-height: 820px) {
+    #box {
+        height: 625px;
+    }
+}
+
+@media screen and (max-height: 765px) {
+    #box {
+        height: 565px;
+    }
+}
+
+@media screen and (max-height: 735px) {
+    #box {
+        height: 540px;
+    }
+}
+
+
+@media screen and (max-height: 700px) {
+    #box {
+        height: 510px;
+    }
+}
+
+@media screen and (max-height: 665px) {
+    #box {
+        height: 480px;
+    }
+}
+
+@media screen and (max-height: 635px) {
+    #box {
+        height: 450px;
+    }
+}
 
 }

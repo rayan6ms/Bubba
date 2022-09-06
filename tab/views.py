@@ -2,11 +2,19 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from datetime import datetime
 from chatterbot import ChatBot
-from chatterbot.trainers import ListTrainer
+from chatterbot.trainers import ListTrainer, ChatterBotCorpusTrainer
+from chatterbot.response_selection import get_random_response
 from user.models import User
 
 
-chatbot = ChatBot("Bubba")
+chatbot = ChatBot(
+    "Bubba",
+    response_selection_method=get_random_response,
+    filters=["filters.get_recent_repeated_responses"],
+    default_response="I have no idea how to respond to that",
+)
+
+trainer = ChatterBotCorpusTrainer(chatbot)
 taught = []
 messages = []
 time = []
@@ -48,7 +56,7 @@ def home(request):
                 time.append(time_now)
 
         iterable = [i for i in range(len(messages))]
-        
+
         return render(
             request,
             "home.html",

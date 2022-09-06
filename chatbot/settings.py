@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -44,17 +45,6 @@ INSTALLED_APPS = [
 
 CHATTERBOT = {
     "name": "Bubba",
-    "logic_adapters": [
-        "chatterbot.logic.MathematicalEvaluation",
-        "chatterbot.logic.TimeLogicAdapter",
-        "chatterbot.logic.BestMatch",
-    ],
-    "filters": ["filters.get_recent_repeated_responses"],
-    "default_response": "I have no idea how to respond to that",
-    "maximum_similarity_threshold": 0.9,
-    "training_data": [
-        "chatterbot.corpus.data.facts.yml", "chatterbot.corpus.data.farewell.yml", "chatterbot.corpus.data.greetings.yml", "chatterbot.corpus.data.jokes.yml", "chatterbot.corpus.data.sounds.yml"
-    ],
 }
 
 MIDDLEWARE = [
@@ -106,9 +96,15 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
+    {
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+    },
 ]
 
 
@@ -130,7 +126,9 @@ USE_TZ = True
 STATIC_URL = "static/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
-STATICFILES_DIRS= [os.path.join(BASE_DIR,'assets'),]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "assets"),
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
