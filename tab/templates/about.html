@@ -3,54 +3,12 @@
 {% block "head" %}
 
 <style>
-    @import url('https://rsms.me/inter/inter.css');
-
-    html {
-        font-family: 'Inter', sans-serif;
-    }
-
-    @import url('http://fonts.cdnfonts.com/css/abeezee');
-
-    .bold {
-        font-weight: bold;
-    }
-
-    .italic {
-        font-style: italic;
-    }
-
     #outer-box {
         background: linear-gradient(to left, #7affd7 50%, white 50%);
-        height: 750px;
-        width: auto;
-        margin: 0 14%;
-        margin-top: 50px;
-        border-radius: 8px;
-        overflow: auto;
     }
 
     #inner-box {
-        background-color: white;
-        width: auto;
-        height: 620px;
-        margin: 0 11.6%;
         box-shadow: -10px 4px 1px 4px rgba(68, 68, 68, 0.25);
-        border-radius: 8px;
-        overflow: auto;
-        margin-top: 70px;
-    }
-
-
-    #about-site {
-        width: 284px;
-        height: 300px;
-        font-family: "Inter", sans-serif;
-        font-weight: 600;
-        font-size: 96px;
-        line-height: 100px;
-        float: right;
-        margin-right: 160px;
-        margin-top: 90px;
     }
 
     #first-paragraph {
@@ -78,25 +36,9 @@
         margin-left: 65px;
     }
 
-    #first-paragraph,
-    #second-paragraph,
-    #about-site {
-        color: #3DA6AD;
-    }
-
-    #next {
-        display: block;
-        margin: 75px auto 0;
-    }
-
-    @media screen and (max-width: 1500px) {
+    @media screen and (max-width: 1565px) {
         #first-paragraph {
             display: none;
-        }
-
-        #about-site {
-            font-size: 40px;
-            height: 70px;
         }
 
         #second-paragraph {
@@ -111,12 +53,7 @@
         }
     }
 
-    @media screen and (max-width: 1060px) {
-        #about-site {
-            font-size: 28px;
-            margin-right: 88px;
-        }
-
+    @media screen and (max-width: 1075px) {
         #second-paragraph {
             font-size: 20px;
             margin-top: 10px;
@@ -126,31 +63,6 @@
     @media screen and (max-width: 900px) {
         #second-paragraph {
             overflow: auto;
-        }
-    }
-
-    @media screen and (max-width: 700px) {
-        #outer-box {
-            margin: 0;
-            height: 730px;
-        }
-
-        #inner-box {
-            margin: 50px 5% 0;
-        }
-
-        #about-site {
-            margin-right: 100px;
-        }
-    }
-
-    @media screen and (max-width: 450px) {
-        #inner-box {
-            margin: 50px 0;
-        }
-
-        #about-site {
-            margin-right: 40px;
         }
     }
 
