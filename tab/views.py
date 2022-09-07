@@ -34,7 +34,7 @@ def home(request):
             User.objects.filter(username=user).update(picture=picture)
 
         unselected = [i for i in range(1, 10) if i != picture]
-
+        
         inputs = []
         responses = []
         if request.POST.get("input") != None:
@@ -56,7 +56,14 @@ def home(request):
                 time.append(time_now)
 
         iterable = [i for i in range(len(messages))]
-
+        trainer.train(
+            "tab/data/facts.yml",
+            "tab/data/farewell.yml",
+            "tab/data/greetings.yml",
+            "tab/data/jokes.yml",
+            "tab/data/sounds.yml",
+            "tab/data/chitchat.yml",
+        )
         return render(
             request,
             "home.html",
