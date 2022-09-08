@@ -15,7 +15,7 @@
         margin-top: 4px;
     }
 </style>
-
+{% load static %}
 {% endblock %}
 
 {% block "content" %}
@@ -26,7 +26,7 @@
             {% for i in iterable %}
                 {% if i|divisibleby:"2" == 1 %}
                     <div class="chat-pack chat-answer">
-                        <img class="chat-img answer-img" src="../media/chat-img.png">
+                        <img class="chat-img answer-img" src="{% static 'media/chat-img.png' %}">
                         <div class="bubble bubble-answer">
                             <p class="message">{{messages|list_item:forloop.revcounter0}}</p>
                             <p class="time">{{time|list_item:forloop.revcounter0}}</p>
@@ -39,7 +39,7 @@
                             <p class="message">{{messages|list_item:forloop.revcounter0}}</p>
                             <p class="time">{{time|list_item:forloop.revcounter0}}</p>
                         </div>
-                        <img class="chat-img message-img" src="../media/pfp/{{picture}}.png">
+                        <img class="chat-img message-img" src="/static/media/pfp/{{picture}}.png">
                     </div>
                 {% endif %}
             {% endfor %}

@@ -45,7 +45,6 @@
         }
 
         #first-paragraph, #about-me, #photo-sized {
-            display: block;
             width: auto;
             padding: 0 20%;
             margin-left: 20px;
@@ -65,15 +64,15 @@
     } 
 
 </style>
-
+{% load static %}
 {% endblock %}
 
 {% block "content" %}
 <div id="outer-box">
     <div id="inner-box">
-        <div id="photo" alt=""><img src="../../media/photo.png"></div>
+        <div id="photo" alt=""><img src="{% static 'media/photo.png' %}"></div>
         <p id="about-me">About Me</p>
-        <div id="photo-sized" alt=""><img src="../../media/photo.png"></div>
+        <div id="photo-sized" alt=""><img src="{% static 'media/photo.png' %}"></div>
 
         <p id="first-paragraph">My name is <span class="bold">Rayan</span>, I'm a computer science student from Brazil and I like Space Movies</p>
 

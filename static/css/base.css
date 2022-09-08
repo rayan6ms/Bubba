@@ -356,7 +356,7 @@ main {
 }
 
 #about-me {
-  text-align: center;
+  text-align: start;
   height: 220px;
   margin-top: 80px;
   margin-bottom: 0;
