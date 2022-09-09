@@ -9,6 +9,7 @@ dj-database-url==1.0.0
 Django==3.2.15
 django-on-heroku==1.1.2
 en-core-web-sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.1.0/en_core_web_sm-2.1.0.tar.gz
+gunicorn==20.1.0
 idna==3.3
 importlib-metadata==4.12.0
 joblib==1.1.0
