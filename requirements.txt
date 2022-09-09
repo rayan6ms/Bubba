@@ -21,7 +21,7 @@ numpy==1.21.6
 packaging==21.3
 pathy==0.6.2
 plac==0.9.6
-preshed==3.0.7
+preshed==2.0.1
 psycopg2-binary==2.9.3
 pydantic==1.9.2
 pyparsing==3.0.9
