@@ -11,7 +11,7 @@ chatbot = ChatBot(
     "Bubba",
     response_selection_method=get_random_response,
     filters=["filters.get_recent_repeated_responses"],
-    default_response="I have no idea how to respond to that",
+    default_response="I don't know how to answer that",
 )
 
 trainer = ChatterBotCorpusTrainer(chatbot)
@@ -56,14 +56,7 @@ def home(request):
                 time.append(time_now)
 
         iterable = [i for i in range(len(messages))]
-        trainer.train(
-            "tab/data/facts.yml",
-            "tab/data/farewell.yml",
-            "tab/data/greetings.yml",
-            "tab/data/jokes.yml",
-            "tab/data/sounds.yml",
-            "tab/data/chitchat.yml",
-        )
+
         return render(
             request,
             "home.html",

@@ -413,6 +413,7 @@ main {
 }
 
 #footer {
+  display: none;
   position: fixed;
   bottom: 0;
   background: radial-gradient(circle, #306899, #32495e);
