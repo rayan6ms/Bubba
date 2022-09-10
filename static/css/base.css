@@ -132,6 +132,7 @@ header {
   margin-bottom: 2px;
   justify-content: flex-end;
   align-self: flex-end;
+  text-align: start;
 }
 
 .bubble-message {
@@ -140,7 +141,6 @@ header {
 
 .bubble-answer {
   border-bottom-left-radius: 0px;
-  text-align: start;
 }
 
 .message {
@@ -151,7 +151,7 @@ header {
 
 .time {
   font-size: 11px;
-  min-width: 41px;
+  min-width: 47px;
   margin: 16px 6px 3px;
   display: flex;
   flex-direction: column-reverse;
@@ -173,7 +173,7 @@ header {
   max-width: 66%;
   height: auto;
   margin-top: 22px;
-  word-break: break-all;
+  word-break: break-word;
   text-align-last: left;
 }
 
