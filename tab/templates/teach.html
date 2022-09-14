@@ -33,11 +33,13 @@
         {% if exists == False %}
             <div class="alert alert-green">
                 Successfully taught!
+                {{tt}}
             </div>
         {% endif %}
         {% if exists == True %}
             <div class="alert-red">
                 This has already been taught!
+                {{tt}}
             </div>
         {% endif %}
         <div id="when-say">

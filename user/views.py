@@ -67,5 +67,6 @@ def signin(request):
     
 def logout(request):
     request.session.flush()
-    views.messages.clear()
+    views.list_messages.clear()
+    views.time.clear()
     return redirect("/login")

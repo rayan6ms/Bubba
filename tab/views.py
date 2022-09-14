@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
+import json
 from datetime import datetime
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer, ChatterBotCorpusTrainer
 from chatterbot.response_selection import get_random_response
+from tab.models import Message, Taught
 from user.models import User
 
 
@@ -15,13 +17,15 @@ chatbot = ChatBot(
 )
 
 trainer = ChatterBotCorpusTrainer(chatbot)
-taught = []
-messages = []
+list_taught = []
+list_messages = []
+jsonDec = json.decoder.JSONDecoder()
 time = []
 dict_messages = {}
 # Create your views here.
 def home(request):
     if request.session.get("user"):
+        list_taught.clear()
         user = User.objects.get(id=request.session["user"])
 
         format = "%l:%M %p"
@@ -34,14 +38,14 @@ def home(request):
             User.objects.filter(username=user).update(picture=picture)
 
         unselected = [i for i in range(1, 10) if i != picture]
-        
+
         inputs = []
         responses = []
         if request.POST.get("input") != None:
             dict_messages.update(
                 {
                     "input": request.POST.get("input"),
-                    "response": chatbot.get_response(request.POST.get("input")),
+                    "response": str(chatbot.get_response(request.POST.get("input"))),
                 }
             )
 
@@ -50,12 +54,24 @@ def home(request):
 
         if inputs:
             for i in range(len(inputs)):
-                messages.append(inputs[i])
+                list_messages.append(inputs[i])
                 time.append(time_now)
-                messages.append(responses[i])
+                list_messages.append(responses[i])
                 time.append(time_now)
 
-        iterable = [i for i in range(len(messages))]
+        iterable = [i for i in range(len(list_messages))]
+
+        model_messages = Message(user_id=user)
+        model_messages.messages = json.dumps(list_messages)
+
+        if not Message.objects.filter(user_id=user):
+            model_messages.save()
+        else:
+            Message.objects.filter(user_id=user).update(
+                messages=json.dumps(list_messages)
+            )
+
+        messages = jsonDec.decode(model_messages.messages)
 
         return render(
             request,
@@ -63,21 +79,24 @@ def home(request):
             {
                 "user": user,
                 "time": time,
-                "messages": messages,
+                "list_messages": list_messages,
                 "picture": picture,
                 "unselected": unselected,
                 "iterable": iterable,
+                "messages": messages,
             },
         )
     else:
+        list_messages.clear()
+        time.clear()
         return redirect("/login/?status=2")
 
 
 def teach(request):
     if request.session.get("user"):
-        user = User.objects.get(id=request.session["user"])
-        messages.clear()
+        list_messages.clear()
         time.clear()
+        user = User.objects.get(id=request.session["user"])
 
         picture = User.objects.get(username=user).picture
         new_picture = request.POST.get("new_picture")
@@ -85,18 +104,37 @@ def teach(request):
             picture = int(new_picture)
             User.objects.filter(username=user).update(picture=picture)
 
+        if not Taught.objects.filter(user_id=user):
+            Taught(user_id=user).save()
+
+        model_taught = str(Taught.objects.filter(user_id=user).get())
+        model_taught = model_taught.replace("[", "").replace("]", "").replace("\'", "").replace("\"", "").replace(",", "")
+        
+        taught = []
+        taught = model_taught.split(" ")
+        if taught[0] == "":
+            taught.pop(0)
+
         train = request.POST.get("train")
         trained = request.POST.get("trained")
         exists = ""
         if train and trained != None:
-            if (train or trained) in taught:
+            if train in taught or trained in taught:
                 exists = True
             else:
-                taught.append(train)
-                taught.append(trained)
+                exists = False
+
+                list_taught.append(train)
+                list_taught.append(trained)
+
+                for i in list_taught:
+                    if i not in taught:
+                        taught.append(i)
+
+                Taught.objects.filter(user_id=user).update(taught=taught)
+
                 trainer = ListTrainer(chatbot)
                 trainer.train(taught)
-                exists = False
 
         unselected = [i for i in range(1, 10) if i != picture]
 
@@ -112,14 +150,16 @@ def teach(request):
             },
         )
     else:
+        list_taught.clear()
         return redirect("/login/?status=2")
 
 
 def about(request):
     if request.session.get("user"):
-        user = User.objects.get(id=request.session["user"])
-        messages.clear()
+        list_messages.clear()
         time.clear()
+        list_taught.clear()
+        user = User.objects.get(id=request.session["user"])
 
         picture = User.objects.get(username=user).picture
         new_picture = request.POST.get("new_picture")
@@ -140,9 +180,10 @@ def about(request):
 
 def more(request):
     if request.session.get("user"):
-        user = User.objects.get(id=request.session["user"])
-        messages.clear()
+        list_messages.clear()
         time.clear()
+        list_taught.clear()
+        user = User.objects.get(id=request.session["user"])
 
         picture = User.objects.get(username=user).picture
         new_picture = request.POST.get("new_picture")
