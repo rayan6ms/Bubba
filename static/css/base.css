@@ -1,5 +1,5 @@
-@import url('https://rsms.me/inter/inter.css');
-@import url('http://fonts.cdnfonts.com/css/abeezee');
+@import url('//rsms.me/inter/inter.css');
+@import url('//fonts.cdnfonts.com/css/abeezee');
 
 body {
   background: linear-gradient(85deg, rgba(101, 113, 172, 1) 10%, rgba(63, 124, 177, 1) 25%, rgba(48, 145, 166, 1) 50%, rgba(46, 127, 196, 1) 75%, rgb(40, 100, 180) 90%);
@@ -582,6 +582,11 @@ main {
     margin-top: 30px;
   }
 
+  #about-me {
+    text-align: center;
+    height: 150px;
+    margin-top: 36px;
+  }
 }
 
 @media screen and (max-width: 1405px) {
@@ -643,6 +648,7 @@ main {
 
 @media screen and (max-width: 755px) {
   #about-me {
+    height: 190px;
     font-size: 76px;
     line-height: 90px;
   }
@@ -794,6 +800,7 @@ main {
 
     #about-me {
         font-size: 56px;
+        height: 150px;
         line-height: 70px;
     }
   }

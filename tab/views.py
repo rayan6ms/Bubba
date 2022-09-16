@@ -4,7 +4,7 @@ from datetime import datetime
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer, ChatterBotCorpusTrainer
 from chatterbot.response_selection import get_random_response
-from tab.models import Message, Taught
+from tab.models import Message, Taught, Time
 from user.models import User
 
 # Create chatbot instance and its parameters
@@ -12,15 +12,16 @@ chatbot = ChatBot(
     "Bubba",
     response_selection_method=get_random_response,
     filters=["filters.get_recent_repeated_responses"],
-    default_response="I don't have an answer, try to teach me in <a href='/teach'>Teach</a>"
+    default_response="I don't have an answer, try to teach me in <a href='/teach'>Teach</a>",
 )
 
 # Create global variables
 trainer = ChatterBotCorpusTrainer(chatbot)
 list_taught = []
 list_messages = []
-time = []
+list_time = []
 dict_messages = {}
+
 
 def home(request):
     if request.session.get("user"):
@@ -28,7 +29,7 @@ def home(request):
         list_taught.clear()
 
         # Get the current UTC time
-        format = "%l:%M %p"
+        format = "%l:%M %P"
         time_now = datetime.now().strftime(format)
 
         # Get the current selected picture (default=1) and update if requested
@@ -54,6 +55,22 @@ def home(request):
 
             inputs.append(dict_messages["input"])
             responses.append(dict_messages["response"])
+
+        # Create a database for the user list of time if not existing
+        if not Time.objects.filter(user_id=user):
+            Time(user_id=user).save()
+
+        # Get the list of messages from the database as str and transform into a list again
+        model_time = str(Time.objects.filter(user_id=user).get())
+
+        model_time = (
+            model_time.replace("[", "")
+            .replace("]", "")
+            .replace("'", "")
+            .replace('"', "")
+        )
+
+        time = model_time.split(",")
 
         # Append the inputs and the answers into list_messages, as well as the the current time for each
         if inputs:
@@ -87,6 +104,7 @@ def home(request):
         if messages[0] == "":
             messages.pop(0)
 
+        # Update database messages list
         Message.objects.filter(user_id=user).update(messages=messages)
 
         # Transform the updated database list into a list again for display
@@ -97,6 +115,19 @@ def home(request):
         )
 
         messages = messages.split(",")
+
+        if time[0] == "":
+            time.pop(0)
+
+        # Update database time list
+        Time.objects.filter(user_id=user).update(time=time)
+
+        # Transform the updated database list into a list again for display
+        time = str(Time.objects.filter(user_id=user).get())
+
+        time = time.replace("[", "").replace("]", "").replace("'", "").replace('"', "")
+
+        time = time.split(",")
 
         if len(messages) > 1:
             iterable = [i for i in range(len(messages))]
@@ -118,8 +149,6 @@ def home(request):
         )
     else:
         list_messages.clear()
-        time.clear()
-        Message.objects.filter(user_id=user).update(messages="")
         return redirect("/login/?status=2")
 
 
@@ -127,8 +156,8 @@ def teach(request):
     if request.session.get("user"):
         user = User.objects.get(id=request.session["user"])
         list_messages.clear()
-        time.clear()
         Message.objects.filter(user_id=user).update(messages="")
+        Time.objects.filter(user_id=user).update(time="")
 
         picture = User.objects.get(username=user).picture
         new_picture = request.POST.get("new_picture")
@@ -201,9 +230,9 @@ def about(request):
     if request.session.get("user"):
         user = User.objects.get(id=request.session["user"])
         list_messages.clear()
-        time.clear()
         list_taught.clear()
         Message.objects.filter(user_id=user).update(messages="")
+        Time.objects.filter(user_id=user).update(time="")
 
         picture = User.objects.get(username=user).picture
         new_picture = request.POST.get("new_picture")
@@ -226,9 +255,9 @@ def more(request):
     if request.session.get("user"):
         user = User.objects.get(id=request.session["user"])
         list_messages.clear()
-        time.clear()
         list_taught.clear()
         Message.objects.filter(user_id=user).update(messages="")
+        Time.objects.filter(user_id=user).update(time="")
 
         picture = User.objects.get(username=user).picture
         new_picture = request.POST.get("new_picture")

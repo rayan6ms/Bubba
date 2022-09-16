@@ -3,6 +3,7 @@ from django.shortcuts import redirect
 from hashlib import sha256
 from django.http import HttpResponse
 from tab import views
+from tab.models import Message, Time
 from .models import User
 # Create your views here.
 
@@ -66,7 +67,9 @@ def signin(request):
         return redirect("/home")
     
 def logout(request):
-    request.session.flush()
+    user = User.objects.get(id=request.session["user"])
     views.list_messages.clear()
-    views.time.clear()
+    Message.objects.filter(user_id=user).update(messages="")
+    Time.objects.filter(user_id=user).update(time="")
+    request.session.flush()
     return redirect("/login")
