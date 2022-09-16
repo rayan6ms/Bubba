@@ -5,14 +5,15 @@ from user.models import User
 
 
 class Message(models.Model):
-    messages = models.TextField(max_length=120, null=True)
+    messages = models.TextField(max_length=120, default="")
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return self.messages
 
+
 class Taught(models.Model):
-    taught = models.TextField(max_length=80, default="[]")
+    taught = models.TextField(max_length=80, default="")
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self) -> str:

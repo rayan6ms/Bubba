@@ -584,6 +584,12 @@ main {
 
 }
 
+@media screen and (max-width: 1405px) {
+  #about-me {
+    text-align-last: center;
+  }
+}
+
 @media screen and (max-width: 1075px) {
   #div-logo {
     display: none;
@@ -632,6 +638,13 @@ main {
 @media screen and (max-width: 780px) {
   header {
     padding: 16px 0;
+  }
+}
+
+@media screen and (max-width: 755px) {
+  #about-me {
+    font-size: 76px;
+    line-height: 90px;
   }
 }
 
@@ -748,7 +761,7 @@ main {
     }
 
     #chat-input {
-      width: 100%;
+      width: 84.8%;
     }
 
     .alert-red,
@@ -777,6 +790,11 @@ main {
 
     #chat-should {
       width: 190px;
+    }
+
+    #about-me {
+        font-size: 56px;
+        line-height: 70px;
     }
   }
 

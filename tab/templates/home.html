@@ -21,6 +21,7 @@
 {% block "content" %}
 <div id="box">
     <div id="chat-bubble">
+        <!-- iterate through messages list and if the position is even display an input and a user selected picture, if it's odd display a response and the bot picture -->
         {% if iterable %}
             {% for i in iterable %}
                 {% if i|divisibleby:"2" == 1 %}
