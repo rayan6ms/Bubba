@@ -103,15 +103,6 @@ def home(request):
         else:
             iterable = []
 
-        trainer.train(
-            "tab/data/facts.yml",
-            "tab/data/farewell.yml",
-            "tab/data/greetings.yml",
-            "tab/data/jokes.yml",
-            "tab/data/sounds.yml",
-            "tab/data/chitchat.yml",
-        )
-
         return render(
             request,
             "home.html",
