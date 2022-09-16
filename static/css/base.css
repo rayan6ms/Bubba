@@ -589,9 +589,9 @@ main {
   }
 }
 
-@media screen and (max-width: 1405px) {
+@media screen and (max-width: 1450px) {
   #about-me {
-    text-align-last: center;
+    height: 220px;
   }
 }
 
