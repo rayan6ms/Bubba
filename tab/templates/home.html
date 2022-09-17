@@ -28,16 +28,20 @@
                     <div class="chat-pack chat-answer">
                         <img class="chat-img answer-img" src="{% static 'media/chat-img.png' %}">
                         <div class="bubble bubble-answer">
-                            <p class="message">{{messages|list_item:forloop.revcounter0}}</p>
-                            <p class="time">{{time|list_item:forloop.revcounter0}}</p>
+                            {% autoescape off%}
+                                <p class="message">{{messages|list_item:forloop.revcounter0}}</p>
+                                <p class="time">{{time|list_item:forloop.revcounter0}}</p>
+                            {% endautoescape%}
                         </div>
                     </div>
                 {% endif %}
                 {% if i|divisibleby:"2" == 0 %}
                     <div class="chat-pack chat-message">
                         <div class="bubble bubble-message">
-                            <p class="message">{{messages|list_item:forloop.revcounter0}}</p>
-                            <p class="time">{{time|list_item:forloop.revcounter0}}</p>
+                            {% autoescape off%}
+                                <p class="message">{{messages|list_item:forloop.revcounter0}}</p>
+                                <p class="time">{{time|list_item:forloop.revcounter0}}</p>
+                            {% endautoescape%}
                         </div>
                         <img class="chat-img message-img" src="/static/media/pfp/{{picture}}.png">
                     </div>

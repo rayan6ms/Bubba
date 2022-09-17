@@ -193,6 +193,14 @@ header {
   margin-right: 5px;
 }
 
+.teach-link {
+  font-size: 18px; 
+  font-family: system-ui; 
+  color: rgb(23 125 227); 
+  font-weight: 400; 
+  text-decoration: underline;
+}
+
 #div-profile {
   display: flex;
   height: 100px;

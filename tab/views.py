@@ -12,7 +12,7 @@ chatbot = ChatBot(
     "Bubba",
     response_selection_method=get_random_response,
     filters=["filters.get_recent_repeated_responses"],
-    default_response="I don't have an answer, try to teach me in <a href='/teach'>Teach</a>",
+    default_response="I don't have an answer, try to teach me in <a class=teach-link href=/teach>Teach</a>",
 )
 
 # Create global variables
@@ -48,8 +48,12 @@ def home(request):
         if request.POST.get("input") != None:
             dict_messages.update(
                 {
-                    "input": request.POST.get("input"),
-                    "response": str(chatbot.get_response(request.POST.get("input"))),
+                    "input": request.POST.get("input")
+                    .replace(",", "&comma;")
+                    .replace("'", "&apos;"),
+                    "response": str(chatbot.get_response(request.POST.get("input")))
+                    .replace(",", "&comma;")
+                    .replace("'", "&apos;"),
                 }
             )
 
@@ -184,6 +188,7 @@ def teach(request):
 
         train = request.POST.get("train")
         trained = request.POST.get("trained")
+
         exists = ""
 
         # Check if current input is already in the database
@@ -193,8 +198,10 @@ def teach(request):
             else:
                 exists = False
 
-                list_taught.append(train)
-                list_taught.append(trained)
+                list_taught.append(train.replace(",", "&comma;").replace("'", "&apos;"))
+                list_taught.append(
+                    trained.replace(",", "&comma;").replace("'", "&apos;")
+                )
 
                 # Update the database list and train the bot with the taught list
                 for i in list_taught:
