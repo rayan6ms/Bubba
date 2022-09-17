@@ -71,5 +71,5 @@ def logout(request):
     views.list_messages.clear()
     Message.objects.filter(user_id=user).update(messages="")
     Time.objects.filter(user_id=user).update(time="")
-    request.session.flush()
+    request.session.flush() 
     return redirect("/login")
