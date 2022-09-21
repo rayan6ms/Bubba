@@ -3,6 +3,8 @@ Bubba is a ChatBot WebApp in which you can talk, interact and teach it to learn 
 
 It is deployed on https://rayan-chatbot.herokuapp.com/
 
+I have a video explaining it on https://www.youtube.com/watch?v=FtXp3G9IdZ4
+
 It was made entirely using only Python, HTML and CSS languages.
 
 ## Installation
