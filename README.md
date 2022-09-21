@@ -10,13 +10,19 @@ It was made entirely using only Python, HTML and CSS languages.
 ## Installation
 You can just clone it to your machine
 
-make sure you have all the requirements from requirements.txt
+make sure you have all the requirements from `requirements.txt`
+
+if you already satisfy the python version needed, you may just run
+```bash
+pip install -r requirements.txt
+```
+to install the rest
 
 and run the following command on the app directory
 ```bash
 python manage.py runserver
 ```
-
+to run the application
 ## Contributing
 Any pull requests are welcome, feel free to modify any response data as you need. For major changes, please open an issue first to discuss what you would like to change.
 
