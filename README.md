@@ -21,24 +21,15 @@ You can just clone it to your machine
 
 Make sure you have all the requirements from `requirements.txt`
 
-If you already satisfy the python version needed, you may just run
+If you already satisfy the python version needed, you may just run this code to install the rest
 ```bash
 pip install -r requirements.txt
 ```
-to install the rest
 
-And run the following command on the app directory
+And run the following command on the app directory to run the application
 ```bash
 python manage.py runserver
 ```
-to run the application
-
-## The Code
-The django files contains two main apps installed
-
-The first one is the `user` app, inside it you can find the models.py that contains the username, password and picture fields inside the User class, the password is hashed on the user.views.py file, the picture is set to 1 by default and it's modified on tab.views.py, these, all together, form the register and login functions and urls for the `user` app
-
-The second one is the `tab` app, inside it you can find the models.py that contains the messages, taught and timestamps text fields inside their respective classes, all of them being stored as a unique list that is modified on tab.views.py every time the user sends an input, but the catch is that it is stored as a string, that is converted to a list every time it has to check its content and send another response again. These form the home and taught functions and urls for the `tab` app
 
 ## Contributing
 Any pull requests are welcome, feel free to modify any response data as you need. For major changes, please open an issue first to discuss what you would like to change.
