@@ -1,6 +1,9 @@
 # Bubba
 Bubba is a ChatBot WebApp in which you can talk, interact and teach it to learn new things.
 
+
+![image](https://user-images.githubusercontent.com/71903949/195985441-9974dd15-3ff5-4120-b220-6d281a0fc90f.png)
+
 ## Introduction
 I used a Python library called [ChatterBot](https://github.com/gunthercox/ChatterBot) for the bot response calculations
 
