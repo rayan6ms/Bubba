@@ -20,6 +20,8 @@ I have a video explaining it on https://www.youtube.com/watch?v=FtXp3G9IdZ4
 It was made entirely using only Python, HTML and CSS languages.
 
 ## Installation
+**PYTHON 3.7 REQUIRED**
+
 You can just clone it to your machine
 
 Make sure you have all the requirements from `requirements.txt`
