@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from hashlib import sha256
-from django.http import HttpResponse
 from tab import views
 from tab.models import Message, Time
 from .models import User
