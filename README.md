@@ -13,7 +13,7 @@ It is filled with jokes and good sense of humor, you can ask for jokes and facts
 
 It was trained with a long custom conversation database I made myself for it to be able to talk before any teachings
 
-It is deployed on https://rayan-chatbot.herokuapp.com/
+It is deployed on https://migole.pythonanywhere.com/
 
 I have a video explaining it on https://www.youtube.com/watch?v=FtXp3G9IdZ4
 
